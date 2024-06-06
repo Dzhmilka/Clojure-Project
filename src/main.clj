@@ -6,7 +6,7 @@
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.util.anti-forgery :refer [anti-forgery-field]]))
 
-(defonce lessons (atom []))
+(defonce lessons (atom {}))
 
 ;; Helper function to generate unique IDs for lessons
 (defn generate-id []
