@@ -1,0 +1,16 @@
+[
+ {:db/ident :lesson/id
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "Unique generated id"}
+ 
+ {:db/ident :lesson/title
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "Lesson title"}
+ 
+ {:db/ident :lesson/body
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "Lesson body"}
+]
