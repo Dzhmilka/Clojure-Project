@@ -1,0 +1,60 @@
+:root {
+    --background-color: #0D0A0B;
+    --additional-color: #454955;
+    --text-color: #F3EFF5;
+    --secondary-color: #3F7D20;
+    --highlighted-color: #72B01D;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: "Open Sans", sans-serif;
+    margin: 0px;
+}
+
+.header {
+    background-color: var(--secondary-color);
+    color: var(--main-text-color);
+    padding: 20px 0;
+}
+
+.header-container {
+    display: flex; /* Arrange elements horizontally */
+    justify-content: space-between; /* Distribute space between elements */
+    align-items: center; /* Align elements vertically */
+    width: 90%; /* Adjust container width as needed */
+    margin: 0 auto; /* Center the container horizontally */
+    height: 60px;
+}
+
+.header .header-nav {
+    display: flex; /* Arrange navigation links horizontally */
+    list-style: none; /* Remove default list item styling */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+.header .header-nav .header-list {
+    display: inline-block;
+    margin-right: 80px; /* Add margin between navigation links */
+    font-size: 1.5em;
+}
+
+.header .header-nav .header-list:last-child {
+    margin-right: auto; /* Add margin between navigation links */
+}
+
+.header .header-nav .header-list .header-link:hover {
+    color: var(--highlighted-color);
+  }
+
+.header .header-link {
+    color: inherit; /* Inherit text color from header (initially white) */
+    text-decoration: none; /* Remove underline */
+}
+
+.website-title {
+    font-size: 2.5em;
+    font-weight: bold;
+}

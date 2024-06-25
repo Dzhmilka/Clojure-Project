@@ -1,14 +1,13 @@
 (ns home
   (:require [hiccup2.core :refer [html]]
-            [io.pedestal.http :as http]))
+            [main :refer [header]]))
 
-(defn main-page [request]
-  {:status 200
-   :headers {"Content-Type" "text/html"}
-   :body (str
-          (html
-           [:html
-            [:head
-             [:title "Home page"]]
-            [:body
-             ]]))})
+(defn home-page []
+  (str
+   (html
+    [:html
+     [:head
+      [:title "Home page"]
+      [:link {:rel "stylesheet" :type "text/css" :href "/css/styles.css"}]]
+     [:body
+      (header)]])))
