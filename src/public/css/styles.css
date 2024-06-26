@@ -15,6 +15,7 @@ body {
 
 .body {
     padding-left: 30px;
+    font-size: 22px;
 }
 
 header {
@@ -49,7 +50,7 @@ header nav li:last-child {
     margin-right: auto; /* Add margin between navigation links */
 }
 
-header nav li a:hover {
+header nav li a:hover, .body a:hover {
     color: var(--highlighted-color);
   }
 
@@ -68,6 +69,23 @@ h1 {
 }
 
 .body-text {
-    font-size: 22px;
     width: 70%;
+}
+
+.home-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.article {
+    width: 70%;
+}
+
+.body-list {
+    width: 30%;
+    margin-right: 30px; /* Space between left-side content and article */
+    margin-left: 100px;
+    background-color: var(--additional-color);
+    padding-left: 24px;
+    box-sizing: border-box;
 }

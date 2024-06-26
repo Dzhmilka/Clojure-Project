@@ -30,4 +30,10 @@
       [:div.body
        [:h1 "Learn Clojure: A Fun and Powerful Programming Language"]
        [:section
-        [:article.body-text "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at elit sed sapien eleifend mattis in in eros. Nunc tincidunt eros ex, ac malesuada tortor convallis sit amet. Suspendisse vulputate vitae ex a sodales. Curabitur venenatis congue viverra. Proin congue."]]]]])))
+        [:div.home-container 
+         [:article.article "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at elit sed sapien eleifend mattis in in eros. Nunc tincidunt eros ex, ac malesuada tortor convallis sit amet. Suspendisse vulputate vitae ex a sodales. Curabitur venenatis congue viverra. Proin congue."]
+         [:div.body-list
+          [:h3 "Check these lectures:"]
+          [:ul
+           [:li "Lecture 1"]
+           [:li "Lecture 2"]]]]]]]])))

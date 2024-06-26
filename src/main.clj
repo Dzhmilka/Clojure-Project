@@ -1,8 +1,7 @@
 (ns main
-  (:require [hiccup2.core :refer [html]]
-            [hiccup.util :refer [raw-string]]
+  (:require [hiccup.util :refer [raw-string]]
             [hiccup.page :refer [html5]]
-            [compojure.core :refer :all]
+            [compojure.core :refer [GET POST defroutes]]
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.util.anti-forgery :refer [anti-forgery-field]]
@@ -47,11 +46,12 @@
         head-links]
        [:body
         header
-        [:h1 "List of Lessons"]
-        [:ul
-         (for [[id title] lessons]
-           [:li [:a {:href (str "/lesson/" id)} title]])]
-        [:a {:href "/new-lesson"} "Create a new lesson"]]]))))
+        [:div.body
+         [:h1 "List of Lessons"]
+         [:ul
+          (for [[id title] lessons]
+            [:li [:a {:href (str "/lesson/" id)} title]])]
+         [:a {:href "/new-lesson"} "Create a new lesson"]]]]))))
 
 ;; Handler to create a new lessons form
 (defn new-lessons-form []
@@ -63,12 +63,13 @@
       head-links]
      [:body
       header
-      [:h1 "Create a New Lesson"]
-      [:form {:action "/create-lesson" :method "post"}
-       (raw-string (anti-forgery-field))
-       [:p "Title: " [:input {:type "text" :name "title"}]]
-       [:p "Body: " [:textarea {:name "body"}]]
-       [:p [:input {:type "submit" :value "Create"}]]]]])))
+      [:div.body
+       [:h1 "Create a New Lesson"]
+       [:form {:action "/create-lesson" :method "post"}
+        (raw-string (anti-forgery-field))
+        [:p "Title: " [:input {:type "text" :name "title"}]]
+        [:p "Body: " [:textarea {:name "body"}]]
+        [:p [:input {:type "submit" :value "Create"}]]]]]])))
 
 ;; Handler to create a new lessons
 (defn create-lesson [form-params]
@@ -90,11 +91,12 @@
         head-links]
        [:body
         header
-        [:h1 title]
-        [:p body]
-        [:p [:textarea {:name "code"}]]
-        [:p [:button "Run code"]]
-        [:a {:href "/"} "Back to lessons"]]]))
+        [:div.body
+         [:h1 title]
+         [:p body]
+         [:p [:textarea {:name "code"}]]
+         [:p [:button "Run code"]]
+         [:a {:href "/lessons"} "Back to lessons"]]]]))
     (str
      (html5
       [:html
@@ -103,7 +105,7 @@
         head-links]
        [:body
         [:h1 "Lesson Not Found"]
-        [:a {:href "/"} "Back to lessons"]]]))))
+        [:a {:href "/lessons"} "Back to lessons"]]]))))
 
 (defroutes app-routes
   (GET "/" [] (home-page))
