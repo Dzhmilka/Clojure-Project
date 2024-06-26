@@ -15,18 +15,25 @@
 (defn generate-id []
   (str (java.util.UUID/randomUUID)))
 
-(defn header []
-  [:header.header
+(def head-links
+  (list
+   [:link {:rel "stylesheet" :type "text/css" :href "/css/styles.css"}]
+   [:link {:rel "preconnect" :href "https://fonts.googleapis.com"}]
+   [:link {:rel "preconnect" :href "https://fonts.gstatic.com" :crossorigin true}]
+   [:link {:href "https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" :rel "stylesheet"}]))
+
+(def header
+  [:header
    [:div.header-container
     [:div.website-title 
      [:a.header-link {:href "/"} "Lecturian"]]
-    [:nav.header-nav
+    [:nav
      [:ul
-      [:li.header-list
+      [:li
        [:a.header-link {:href "/lectures"} "Lectures"]]
-      [:li.header-list
+      [:li
        [:a.header-link {:href "/lessons"} "Lessons"]]
-      [:li.header-list
+      [:li
        [:a.header-link {:href "/profile"} "Profile"]]]]]])
 
 ;; Handler to view the list of lessons
@@ -37,9 +44,9 @@
       [:html
        [:head
         [:title "Lessons"]
-        [:link {:rel "stylesheet" :type "text/css" :href "/css/styles.css"}]]
+        head-links]
        [:body
-        (header)
+        header
         [:h1 "List of Lessons"]
         [:ul
          (for [[id title] lessons]
@@ -52,8 +59,10 @@
    (html5
     [:html
      [:head
-      [:title "New Lesson"]]
+      [:title "New Lesson"]
+      head-links]
      [:body
+      header
       [:h1 "Create a New Lesson"]
       [:form {:action "/create-lesson" :method "post"}
        (raw-string (anti-forgery-field))
@@ -77,8 +86,10 @@
      (html5
       [:html
        [:head
-        [:title title]]
+        [:title title]
+        head-links]
        [:body
+        header
         [:h1 title]
         [:p body]
         [:p [:textarea {:name "code"}]]
@@ -88,7 +99,8 @@
      (html5
       [:html
        [:head
-        [:title "Not Found"]]
+        [:title "Not Found"]
+        head-links]
        [:body
         [:h1 "Lesson Not Found"]
         [:a {:href "/"} "Back to lessons"]]]))))

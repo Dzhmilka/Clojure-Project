@@ -9,11 +9,15 @@
 body {
     background-color: var(--background-color);
     color: var(--text-color);
-    font-family: "Open Sans", sans-serif;
+    font-family: Lato, sans-serif;
     margin: 0px;
 }
 
-.header {
+.body {
+    padding-left: 30px;
+}
+
+header {
     background-color: var(--secondary-color);
     color: var(--main-text-color);
     padding: 20px 0;
@@ -28,33 +32,42 @@ body {
     height: 60px;
 }
 
-.header .header-nav {
+header nav {
     display: flex; /* Arrange navigation links horizontally */
     list-style: none; /* Remove default list item styling */
     margin: 0; /* Remove default margin */
     padding: 0; /* Remove default padding */
 }
 
-.header .header-nav .header-list {
+header nav li {
     display: inline-block;
     margin-right: 80px; /* Add margin between navigation links */
     font-size: 1.5em;
 }
 
-.header .header-nav .header-list:last-child {
+header nav li:last-child {
     margin-right: auto; /* Add margin between navigation links */
 }
 
-.header .header-nav .header-list .header-link:hover {
+header nav li a:hover {
     color: var(--highlighted-color);
   }
 
-.header .header-link {
-    color: inherit; /* Inherit text color from header (initially white) */
-    text-decoration: none; /* Remove underline */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 35px;
 }
 
 .website-title {
-    font-size: 2.5em;
+    font-size: 40px;
     font-weight: bold;
+}
+
+.body-text {
+    font-size: 22px;
+    width: 70%;
 }
