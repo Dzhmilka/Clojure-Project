@@ -6,4 +6,5 @@
         hiccup/hiccup {:mvn/version "2.0.0-RC3"}
         compojure/compojure {:mvn/version "1.7.1"}
         org.slf4j/slf4j-simple {:mvn/version "2.0.10"}
-        com.datomic/peer {:mvn/version "1.0.7075"}}}
+        com.datomic/peer {:mvn/version "1.0.7075"}
+        thheller/shadow-cljs {:mvn/version "2.15.10"}}}
