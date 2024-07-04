@@ -16,23 +16,21 @@
 
 (def head-links
   (list
-   [:link {:rel "stylesheet" :type "text/css" :href "/css/styles.css"}]
-   [:link {:rel "preconnect" :href "https://fonts.googleapis.com"}]
-   [:link {:rel "preconnect" :href "https://fonts.gstatic.com" :crossorigin true}]
-   [:link {:href "https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" :rel "stylesheet"}]))
+   [:link {:rel "stylesheet" :type "text/css" :href "/css/reset.css"}]
+   [:link {:rel "stylesheet" :type "text/css" :href "/css/styles.css"}]))
 
 (def header
   [:header
    [:div.header-container
     [:div.website-title 
-     [:a.header-link {:href "/"} "Lecturian"]]
+     [:a {:href "/"} "Lecturian"]]
     [:nav
      [:ul
-      [:li
+      [:li.header-list-item
        [:a.header-link {:href "/lectures"} "Lectures"]]
-      [:li
+      [:li.header-list-item
        [:a.header-link {:href "/lessons"} "Lessons"]]
-      [:li
+      [:li.header-list-item
        [:a.header-link {:href "/profile"} "Profile"]]]]]])
 
 ;; Handler to view the list of lessons
@@ -46,7 +44,7 @@
         head-links]
        [:body
         header
-        [:div.body
+        [:section.main-body
          [:h1 "List of Lessons"]
          [:ul
           (for [[id title] lessons]
@@ -63,7 +61,7 @@
       head-links]
      [:body
       header
-      [:div.body
+      [:section.main-body
        [:h1 "Create a New Lesson"]
        [:form {:action "/create-lesson" :method "post"}
         (raw-string (anti-forgery-field))
@@ -76,7 +74,7 @@
   (let [id (generate-id)
         title (get form-params :title)
         body (get form-params :body)]
-    (log/info "Parametrs got: " form-params title body)
+    (log/info "Parametrs recieved: " form-params title body)
     (db/create-lesson id title body)
     {:status 302 :headers {"Location" (str "/lesson/" id)}}))
 
@@ -91,12 +89,15 @@
         head-links]
        [:body
         header
-        [:div.body
-         [:h1 title]
-         [:p body]
-         [:p [:textarea {:name "code"}]]
-         [:p [:button "Run code"]]
-         [:a {:href "/lessons"} "Back to lessons"]]]]))
+        [:div.main-body
+         [:h1.lesson-title title]
+         [:section.lesson-container 
+          [:article.lesson-info 
+           [:p body]
+           [:a {:href "/lessons"} "Back to lessons"]]
+          [:article.lesson-code
+           [:p [:textarea {:name "code"}]]
+           [:p [:button "Run code"]]]]]]]))
     (str
      (html5
       [:html
@@ -104,8 +105,10 @@
         [:title "Not Found"]
         head-links]
        [:body
-        [:h1 "Lesson Not Found"]
-        [:a {:href "/lessons"} "Back to lessons"]]]))))
+        header
+        [:div.main-body
+         [:h1 "Lesson Not Found"]
+         [:a {:href "/lessons"} "Back to lessons"]]]]))))
 
 (defroutes app-routes
   (GET "/" [] (home-page))
